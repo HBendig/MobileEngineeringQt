@@ -2,9 +2,15 @@ import QtQuick 2.0
 import QtQuick.Controls 2.1
 
 Item {
+    id:mainItem
     Rectangle{
         id:mainRect
         anchors.fill: parent
+        onVisibleChanged: {
+            listModel.update();
+
+        }
+
         Component {
              id: listDelegate
              Item {
@@ -18,17 +24,17 @@ Item {
                           width:10
                           onClicked: {
                               listModel.remove(this)
+
                           }
 
                       }
 
                       Text {
-                          text: 'Name: ' + name
+                          text: 'Task: ' + task
 
                       }
                       Text {
-                          text: 'Cost:' + cost
-                      //anchors.left: chBox.right
+                          text: 'Category: ' + category
                       }
                      }
                  }
@@ -37,12 +43,23 @@ Item {
 
          ListModel {
                   id: listModel
-                  ListElement {
-                      name: "Apple"; cost: 2.45
+                  function update(){
+                      console.log("ja=?");
+                      var f= input.getSize();
+                      for (var i = 0; i < f; i++) {
+                          append(createListElement(i));
+                      }
                   }
-                  ListElement {
-                      name: "f"; cost: 2.45
-                  }
+
+                  function createListElement(index) {
+                      return {
+                          task: input.getData(index),category:"1"
+                      }
+
+                      }
+
+
+
           }
 
          ListView {
@@ -53,6 +70,7 @@ Item {
                focus: true
          }
      }
+
 
 }
 

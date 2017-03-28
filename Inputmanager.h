@@ -12,6 +12,8 @@ public:
     sqlManager sql;
 public slots:
     void addTaskButton(QString a, QString b);
+    QString getData(int index);
+    int getSize();
 };
 
 #endif // INPUTMANAGER_H

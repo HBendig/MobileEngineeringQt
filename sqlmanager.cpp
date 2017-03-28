@@ -4,6 +4,7 @@
 #include <QSqlQuery>
 #include <QFile>
 #include <QUrl>
+#include <QStringList>
 QString databaseName;
 
 sqlManager::sqlManager()
@@ -29,13 +30,13 @@ void sqlManager::connectToDatabase(){
 
 
             QSqlQuery query(database);
-            if(query.exec())
-            query.exec("create table task (task string, category string);");
+            query.exec("create table task (task string, category string,id integer primary key AUTOINCREMENT);");
             query.exec("select * from task;");
+
             while (query.next())
             {
                QString name = query.value(0).toString();
-               qDebug() << name;
+               qDebug() << "StartSQL DEbug"<<name;
             }
         }
         else if(!database.isOpen()){
@@ -48,17 +49,33 @@ void sqlManager::connectToDatabase(){
     }
 
 }
+
 void sqlManager::getQuery(QString queryString){
     QSqlQuery query(queryString);
     qDebug() << queryString;
-    database.exec(queryString);
     qDebug() << database.isOpen();
 
-    while (query.next())
-    {
-       QString name = query.value(query.size()).toString();
-       qDebug() << name;
-    }
+    QStringList task;
+    QStringList category;
+        while (query.next())
+        {
+            task.append(query.value(0).toString());
+           qDebug() << task;
 
-
+        }
 }
+QStringList sqlManager::getQuery(QString queryString,QString type){
+    QSqlQuery query(queryString);
+    qDebug() << queryString;
+    qDebug() << database.isOpen();
+
+    QStringList task;
+    QStringList category;
+        while (query.next())
+        {
+            task.append(query.value(0).toString());
+           qDebug() << "task"<<task;
+        }
+        return task;
+}
+

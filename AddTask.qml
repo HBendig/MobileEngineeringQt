@@ -50,6 +50,7 @@ Item {
             width: parent.width * 0.9
             onClicked: {
                 input.addTaskButton(taskName.text ,toDoCategory.currentText)
+
             }
         }
     }
