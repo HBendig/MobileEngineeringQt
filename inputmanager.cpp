@@ -12,7 +12,7 @@ void inputManager::addTaskButton(QString taskName, QString toDoCategory){
     qDebug() << taskName;
     qDebug() << toDoCategory;
     QString tmpString = "insert into task values (\"" +taskName +"\" ,\"" + toDoCategory +"\");";
-    tmpString = tmpString.remove("");
 
+    qDebug() << tmpString;
      sql.getQuery(tmpString);
 }

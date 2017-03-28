@@ -8,8 +8,8 @@ QString databaseName;
 
 sqlManager::sqlManager()
 {
-    databaseName = ":database";
-   // databaseName = "/home/qt/MobileEngineering/database";
+   databaseName = ":database";
+   //databaseName = "/home/qt/MobileEngineering/database";
 
 }
 
@@ -26,7 +26,12 @@ void sqlManager::connectToDatabase(){
         if(database.isOpen()){
             qDebug() << "OpenDatabase success";
 
-            QSqlQuery query("SELECT * FROM task");
+
+
+            QSqlQuery query(database);
+            if(query.exec())
+            query.exec("create table task (task string, category string);");
+            query.exec("select * from task;");
             while (query.next())
             {
                QString name = query.value(0).toString();
