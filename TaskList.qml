@@ -14,16 +14,24 @@ Item {
              id: listDelegate
              Item {
                  id: listItem
-                width: mainRect.width; height: mainRect.height * 0.1
+                width: mainRect.width; height: mainRect.height * 0.3
 
                  Row {
                   Column {
+
                       width: 200
+
                       CheckBox{
                           id:chBox
                           width:10
                           onClicked: {
+                              console.log("od" + idElement.objectName)
+                              input.removeElement(idElement)
                               listModel.remove(this)
+
+
+
+
 
                           }
 
@@ -32,10 +40,15 @@ Item {
                       Text {
                           text: 'Task: ' + task
 
+
                       }
                       Text {
                           text: 'Category: ' + category
                       }
+                      Text{
+                          text: idElement
+                      }
+
                       /*MouseArea{
                           width: listItem.width
                           height: listItem.height
@@ -68,8 +81,10 @@ Item {
                   }
 
                   function createListElement(index) {
+                      console.log("was passiert"+input.getData(index,"task")+input.getData(index,"id"));
                       return {
-                          task: input.getData(index),category:"1"
+                          task: input.getData(index,"task"),category:input.getData(index,"category"), idElement:input.getData(index,"id")
+
                       }
 
                       }

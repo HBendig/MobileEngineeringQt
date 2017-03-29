@@ -30,14 +30,26 @@ void sqlManager::connectToDatabase(){
 
 
             QSqlQuery query(database);
-            query.exec("create table task (task string, category string,id integer primary key AUTOINCREMENT);");
+            query.exec("create table task (task string, category string,id integer primary key autoincrement);");
             query.exec("select * from task;");
 
             while (query.next())
             {
-               QString name = query.value(0).toString();
+               QString name = query.value(2).toString();
                qDebug() << "StartSQL DEbug"<<name;
             }
+
+
+            query.exec("select id from task where id = (select max(id) from task)order by id desc limit 1");
+
+              while (query.next()){
+                  idIndex =query.value(0).toInt() + 1;
+             qDebug() << query.value(0).toString();
+              }
+             qDebug() << "idIndex" <<idIndex ;
+
+
+
         }
         else if(!database.isOpen()){
             qDebug() << "OpenDatabase fail";
@@ -50,7 +62,7 @@ void sqlManager::connectToDatabase(){
 
 }
 
-void sqlManager::getQuery(QString queryString){
+void sqlManager::getQueryNull(QString queryString){
     QSqlQuery query(queryString);
     qDebug() << queryString;
     qDebug() << database.isOpen();
@@ -64,18 +76,16 @@ void sqlManager::getQuery(QString queryString){
 
         }
 }
-QStringList sqlManager::getQuery(QString queryString,QString type){
+QStringList sqlManager::getQuery(QString queryString){
     QSqlQuery query(queryString);
     qDebug() << queryString;
     qDebug() << database.isOpen();
 
-    QStringList task;
-    QStringList category;
+    QStringList list;
         while (query.next())
         {
-            task.append(query.value(0).toString());
-           qDebug() << "task"<<task;
+            list.append(query.value(0).toString());
         }
-        return task;
+        return list;
 }
 

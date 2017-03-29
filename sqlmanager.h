@@ -14,11 +14,12 @@ public:
 public slots:
      void connectToDatabase();
 
-     void getQuery(QString query);
-     QStringList getQuery(QString query, QString type);
+     void getQueryNull(QString query);
+     QStringList getQuery(QString query);
 private:
-
     QSqlDatabase database;
+public:
+    int idIndex;
 };
 
 #endif // SQLMANAGER_H
