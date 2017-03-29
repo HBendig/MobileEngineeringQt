@@ -7,14 +7,14 @@ Item {
         id:mainRect
         anchors.fill: parent
         onVisibleChanged: {
-            listModel.update();
-
+            listModel.update(mainRect.visible);
         }
 
         Component {
              id: listDelegate
              Item {
-             width: mainRect.width; height: mainRect.height * 0.1
+                 id: listItem
+                width: mainRect.width; height: mainRect.height * 0.1
 
                  Row {
                   Column {
@@ -36,6 +36,15 @@ Item {
                       Text {
                           text: 'Category: ' + category
                       }
+                      /*MouseArea{
+                          width: listItem.width
+                          height: listItem.height
+                          anchors.fill: listItem
+                          onClicked: {
+                             listModel.remove(this);
+                              console.log ("onClicked");
+                          }
+                      }*/
                      }
                  }
              }
@@ -43,11 +52,18 @@ Item {
 
          ListModel {
                   id: listModel
-                  function update(){
-                      console.log("ja=?");
+                  function update(visible){
+
                       var f= input.getSize();
-                      for (var i = 0; i < f; i++) {
-                          append(createListElement(i));
+                      if (visible){
+                          for (var i = 0; i < f; i++) {
+                              append(createListElement(i));
+                          }
+                      }else if (!visible){
+                          for (var i = 0; i < f; i++) {
+                              remove(createListElement(i));
+                          }
+
                       }
                   }
 

@@ -16,5 +16,6 @@ int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty("sql",&sql);
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 
+
     return app.exec();
 }
