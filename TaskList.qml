@@ -25,7 +25,7 @@ Item {
                           id:chBox
                           width:10
                           onClicked: {
-                              console.log("od" + idElement.objectName)
+                              console.log("HIER" + idElement.objectName)
                               input.removeElement(idElement)
                               listModel.remove(this)
 
@@ -68,8 +68,10 @@ Item {
                   function update(visible){
 
                       var f= input.getSize();
+
                       if (visible){
                           for (var i = 0; i < f; i++) {
+                              console.log(f);
                               append(createListElement(i));
                           }
                       }else if (!visible){
@@ -83,9 +85,10 @@ Item {
                   function createListElement(index) {
                       console.log("was passiert"+input.getData(index,"task")+input.getData(index,"id"));
                       return {
-                          task: input.getData(index,"task"),category:input.getData(index,"category"), idElement:input.getData(index,"id")
+                                task: input.getData(index,"task"),category:input.getData(index,"category"),idElement: input.getData(index,"id"),
 
-                      }
+                          }
+
 
                       }
 
