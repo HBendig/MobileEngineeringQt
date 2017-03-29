@@ -15,6 +15,7 @@ public slots:
     QString getData(int index,QString type);
     int getSize();
     void removeElement(int index);
+    void getfilteredData(QString type,QString category);
 };
 
 #endif // INPUTMANAGER_H

@@ -1,4 +1,4 @@
-import QtQuick 2.0
+import QtQuick 2.7
 import QtQuick.Controls 2.1
 
 Item {
@@ -6,8 +6,21 @@ Item {
     Rectangle{
         id:mainRect
         anchors.fill: parent
-        onVisibleChanged: {
+        onVisibleChanged:  {
             listModel.update(mainRect.visible);
+
+        }
+
+        ComboBox{
+
+            id:categoryFilter
+            model: ["All", "Other" , "Shopping" , "Study" , "Work" , "Reminder"]
+            onCurrentTextChanged: {
+                listModel.update(false);
+                listModel.update(true);
+
+            }
+
         }
 
         Component {
@@ -20,19 +33,13 @@ Item {
                   Column {
 
                       width: 200
+                      height:200
 
                       CheckBox{
                           id:chBox
-                          width:10
                           onClicked: {
-                              console.log("HIER" + idElement.objectName)
                               input.removeElement(idElement)
                               listModel.remove(this)
-
-
-
-
-
                           }
 
                       }
@@ -48,16 +55,6 @@ Item {
                       Text{
                           text: idElement
                       }
-
-                      /*MouseArea{
-                          width: listItem.width
-                          height: listItem.height
-                          anchors.fill: listItem
-                          onClicked: {
-                             listModel.remove(this);
-                              console.log ("onClicked");
-                          }
-                      }*/
                      }
                  }
              }
@@ -68,29 +65,45 @@ Item {
                   function update(visible){
 
                       var f= input.getSize();
+                      console.log("updating" + visible)
 
                       if (visible){
                           for (var i = 0; i < f; i++) {
-                              console.log(f);
                               append(createListElement(i));
                           }
                       }else if (!visible){
                           for (var i = 0; i < f; i++) {
-                              remove(createListElement(i));
+                              remove(removeListElement(i));
                           }
 
                       }
                   }
-
                   function createListElement(index) {
-                      console.log("was passiert"+input.getData(index,"task")+input.getData(index,"id"));
+                      var string = input.getData(index,"category")
+                      var allString = "All"
+                      console.log("same?" + string.localeCompare(categoryFilter.currentText));
+                      console.log("same?" + string + categoryFilter.currentText);
+                      if(string.localeCompare(categoryFilter.currentText )== 0 || allString.localeCompare(categoryFilter.currentText )== 0){
+                          console.log("same")
+                      return {
+
+                                task: input.getData(index,"task"),category:input.getData(index,"category"),idElement: input.getData(index,"id"),
+
+                          }
+                      }
+
+                  }
+                  function removeListElement(index) {
+
                       return {
                                 task: input.getData(index,"task"),category:input.getData(index,"category"),idElement: input.getData(index,"id"),
 
                           }
 
+                  }
 
-                      }
+
+
 
 
 
@@ -104,8 +117,6 @@ Item {
                focus: true
          }
      }
-
-
 }
 
 

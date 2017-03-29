@@ -9,7 +9,7 @@ Rectangle {
 
     TabView {
         id: tabView
-        anchors.fill:parent
+        anchors.fill: parent
         Tab{
             active: true
             asynchronous: false

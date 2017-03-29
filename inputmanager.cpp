@@ -39,4 +39,10 @@ void inputManager::removeElement(int index){
     QString tmpString = "delete from task where id = " +  QString::number(index)+ ";";
     sql.getQuery(tmpString);
 }
+void inputManager::getfilteredData(QString type, QString category){
+    QString tmpString = "select " + type + " from task where category =" + category +";";
+    sql.getQuery(tmpString);
+
+
+}
 
