@@ -12,7 +12,6 @@ Item {
         }
 
         ComboBox{
-
             id:categoryFilter
             model: ["All", "Other" , "Shopping" , "Study" , "Work" , "Reminder"]
             onCurrentTextChanged: {
@@ -27,41 +26,36 @@ Item {
              id: listDelegate
              Item {
                  id: listItem
-                width: mainRect.width; height: mainRect.height * 0.3
+                 width: mainRect.width; height: mainRect.height * 0.2
 
-                 Row {
                   Column {
-
-                      width: 200
-                      height:200
-
                       CheckBox{
                           id:chBox
-                          onClicked: {
+                          onPressed: {
                               input.removeElement(idElement)
-                              listModel.remove(this)
                           }
-
                       }
 
                       Text {
                           text: 'Task: ' + task
-
-
                       }
+
                       Text {
                           text: 'Category: ' + category
                       }
+
                       Text{
                           text: idElement
+                          visible: false
                       }
-                     }
+
                  }
              }
          }
 
          ListModel {
                   id: listModel
+
                   function update(visible){
 
                       var f= input.getSize();
@@ -72,9 +66,7 @@ Item {
                               append(createListElement(i));
                           }
                       }else if (!visible){
-                          for (var i = 0; i < f; i++) {
-                              remove(removeListElement(i));
-                          }
+                          listModel.clear();
 
                       }
                   }
@@ -107,16 +99,19 @@ Item {
 
 
 
+
           }
 
          ListView {
                id: listView
-               anchors.fill: parent; anchors.margins: 5
+               anchors.fill: parent
+               anchors.topMargin:  parent.height * 0.10
                model:listModel
                delegate: listDelegate
                focus: true
          }
      }
+
 }
 
 
