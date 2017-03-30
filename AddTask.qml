@@ -24,8 +24,9 @@ Item {
             id:taskName
             x: parent.width * 0.05
             y: parent.height * 0.3
-            text: qsTr("Enter a title here")
-            font.pixelSize: 24
+            width: parent.width * 0.9
+            placeholderText: qsTr("Enter a title here")
+            font.pointSize: 24
         }
         Text{
             text:"Todo category"
