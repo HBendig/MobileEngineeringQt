@@ -66,7 +66,13 @@ ButtonFormular{
     }
     buttonEqual.onClicked:  {
         calc.calculate()
-        mainWindow.click = ""
-        mainWindow.firstClicked = true
+        if(plattformId === 0)
+        {
+            mainWindow.click = ""
+            mainWindow.firstClicked = true
+        } else {
+            mainWindowSmartphone.click = "";
+            mainWindowSmartphone.firstClicked = true;
+        }
    }
 }

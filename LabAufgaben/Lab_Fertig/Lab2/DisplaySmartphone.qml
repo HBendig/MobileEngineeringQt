@@ -2,25 +2,24 @@ import QtQuick 2.4
 
 
 DisplayFormular {
-
     Connections{
         target:calc
         onCalcDone: outputText.text = calcResult
     }
     Connections{
-        target:mainWindow
-        onClickChanged:{ inputText.text = inputText.text + mainWindow.click}
+        target:mainWindowSmartphone
+        onClickChanged:{ inputText.text = inputText.text + mainWindowSmartphone.click}
     }
     Connections{
-        target:mainWindow
+        target:mainWindowSmartphone
         onFirstClickedChanged:{
-            if(mainWindow.firstClicked){
+            if(mainWindowSmartphone.firstClicked){
                 inputText.text = ""
             }
         }
     }
     Connections{
-        target:mainWindow
+        target:mainWindowSmartphone
         onFirstClickedChanged:{
                 inputText.text = ""
         }

@@ -27,7 +27,7 @@ ApplicationWindow {
         console.log(click)
     }
 
-    MainFormular {
+    MainDesktopFormular {
 
         }
 }

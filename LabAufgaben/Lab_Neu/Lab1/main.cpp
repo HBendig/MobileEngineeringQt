@@ -7,7 +7,10 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
 
     QQmlApplicationEngine engine;
-        //engine.rootContext()->setContextProperty("calc",&calc);
+	// Hier einkommentieren für Lab Aufgabe 1c
+    //engine.rootContext()->setContextProperty("calc",&calc);
+
+	// Hier einkommentieren für Lab Aufgabe 1a
 	//engine.load(QUrl(QLatin1String("qrc:/Main.qml")));
 	
 

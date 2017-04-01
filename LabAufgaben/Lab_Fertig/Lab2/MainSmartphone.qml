@@ -2,11 +2,8 @@ import QtQuick 2.4
 import QtQuick.Controls 2.1
 
 ApplicationWindow {
-    id: mainWindow
+    id: mainWindowSmartphone
     visible: true
-
-    width: 800
-    height: 400
 
     signal clicked(string clickButtonText)
 
@@ -27,7 +24,7 @@ ApplicationWindow {
         console.log(click)
     }
 
-    MainFormular {
+    MainSmartphoneFormular {
 
         }
 }

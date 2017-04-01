@@ -4,11 +4,9 @@ import QtQuick.Layouts 1.1
 Item {
     anchors.fill: parent
 
-    RowLayout {
-        id: rowLayout
+    ColumnLayout {
+        id: columnLayout
         anchors.fill: parent
-        antialiasing: false
-
 
         Item {
             id: itemDisplay
@@ -17,7 +15,7 @@ Item {
             Layout.fillHeight: true
             Layout.fillWidth: true
 
-            Display {
+            DisplaySmartphone {
                 id: display
             }
         }
