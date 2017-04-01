@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/">
+        <file>qtquickcontrols2.conf</file>
+        <file>Main.qml</file>
+        <file>MainFormular.ui.qml</file>
+        <file>Button.qml</file>
+        <file>ButtonFormular.ui.qml</file>
+        <file>Display.qml</file>
+        <file>DisplayFormular.ui.qml</file>
+    </qresource>
+</RCC>
