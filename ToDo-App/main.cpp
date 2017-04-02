@@ -13,7 +13,6 @@ int main(int argc, char *argv[])
     sqlManager sql;
     QQmlApplicationEngine engine;
     engine.rootContext()->setContextProperty("input",&input);
-    engine.rootContext()->setContextProperty("sql",&sql);
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 
 

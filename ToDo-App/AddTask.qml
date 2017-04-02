@@ -1,5 +1,5 @@
 import QtQuick 2.7
-import QtQuick.Controls 1.4
+import QtQuick.Controls 2.1
 
 Item {
     Rectangle{
@@ -33,26 +33,28 @@ Item {
             color:"black"
             font.pointSize: 12
             x: parent.width * 0.05
-            y: parent.height * 0.4
+            y: parent.height * 0.5
 
         }
         ComboBox{
             id:toDoCategory
             x: parent.width * 0.05
-            y: parent.height * 0.5
+            y: parent.height * 0.6
             width: parent.width * 0.9
             model: ["Other" , "Shopping" , "Study" , "Work" , "Reminder"]
         }
         Button{
             id:addButton
             x: parent.width * 0.05
-            y: parent.height * 0.6
+            y: parent.height * 0.7
             text:"ADD TODO"
             width: parent.width * 0.9
             onClicked: {
                 input.addTaskButton(taskName.text ,toDoCategory.currentText)
-
+                applicationWindowMain.updateList()
             }
+
+
         }
     }
 

@@ -1,14 +1,22 @@
 import QtQuick 2.7
 import QtQuick.Controls 2.1
+import QtQuick.Layouts 1.0
+import QtQuick.Controls.Styles 1.4
 
-Item {
+Item {    
     id:mainItem
+
     Rectangle{
         id:mainRect
         anchors.fill: parent
-        onVisibleChanged:  {
-            listModel.update(mainRect.visible);
+        Connections{
 
+            target:applicationWindowMain
+            onUpdateList:{
+                console.log("new")
+                listModel.update(false);
+                listModel.update(true);
+            }
         }
 
         ComboBox{
@@ -17,36 +25,38 @@ Item {
             onCurrentTextChanged: {
                 listModel.update(false);
                 listModel.update(true);
-
             }
-
         }
 
         Component {
              id: listDelegate
+
              Item {
                  id: listItem
-                 width: mainRect.width; height: mainRect.height * 0.2
-
-                  Column {
-                      CheckBox{
+                 width: mainRect.width; height: mainRect.height * 0.1
+                 Row {
+                     CheckBox{
                           id:chBox
                           onPressed: {
                               input.removeElement(idElement)
                           }
                       }
 
-                      Text {
-                          text: 'Task: ' + task
-                      }
+                      Column{
+                          Text {
+                              text: 'Task: ' + task
+                              font.pointSize: 12
+                          }
 
-                      Text {
-                          text: 'Category: ' + category
-                      }
+                          Text {
+                              text: 'Category: ' + category
+                              font.pointSize: 12
+                          }
 
-                      Text{
-                          text: idElement
-                          visible: false
+                          Text{
+                              text: idElement
+                              visible: false
+                          }
                       }
 
                  }
@@ -55,11 +65,9 @@ Item {
 
          ListModel {
                   id: listModel
-
                   function update(visible){
 
                       var f= input.getSize();
-                      console.log("updating" + visible)
 
                       if (visible){
                           for (var i = 0; i < f; i++) {
@@ -67,7 +75,6 @@ Item {
                           }
                       }else if (!visible){
                           listModel.clear();
-
                       }
                   }
                   function createListElement(index) {
@@ -78,28 +85,16 @@ Item {
                       if(string.localeCompare(categoryFilter.currentText )== 0 || allString.localeCompare(categoryFilter.currentText )== 0){
                           console.log("same")
                       return {
-
                                 task: input.getData(index,"task"),category:input.getData(index,"category"),idElement: input.getData(index,"id"),
-
                           }
                       }
-
                   }
                   function removeListElement(index) {
 
                       return {
                                 task: input.getData(index,"task"),category:input.getData(index,"category"),idElement: input.getData(index,"id"),
-
                           }
-
                   }
-
-
-
-
-
-
-
           }
 
          ListView {

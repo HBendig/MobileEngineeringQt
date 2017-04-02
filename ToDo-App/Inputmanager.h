@@ -8,7 +8,6 @@ class inputManager : public QObject
     Q_OBJECT
 public:
     inputManager();
-
     sqlManager sql;
 public slots:
     void addTaskButton(QString a, QString b);

@@ -1,7 +1,7 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
-        <file>MainForm.ui.qml</file>
+        <file>MainForm.qml</file>
         <file>AddTask.qml</file>
         <file>TaskList.qml</file>
         <file>images/button_default.png</file>
