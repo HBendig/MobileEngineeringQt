@@ -52,6 +52,7 @@ Item {
             onClicked: {
                 input.addTaskButton(taskName.text ,toDoCategory.currentText)
                 applicationWindowMain.updateList()
+                taskName.clear();
             }
 
 
