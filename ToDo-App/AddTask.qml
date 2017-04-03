@@ -26,7 +26,7 @@ Item {
             y: parent.height * 0.3
             width: parent.width * 0.9
             placeholderText: qsTr("Enter a title here")
-            font.pointSize: 24
+            //font.pointSize: 24
         }
         Text{
             text:"Todo category"
@@ -54,9 +54,6 @@ Item {
                 applicationWindowMain.updateList()
                 taskName.clear();
             }
-
-
         }
     }
-
 }

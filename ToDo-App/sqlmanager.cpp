@@ -19,7 +19,6 @@ void sqlManager::connectToDatabase(){
     qDebug() << QSqlDatabase::isDriverAvailable("QSQLITE");
 
     if(QFile (databaseName).exists()){
-        qDebug() << "exists";
         database = QSqlDatabase::addDatabase("QSQLITE");
         database.setDatabaseName(databaseName);
         qDebug() << database.open();
@@ -34,9 +33,7 @@ void sqlManager::connectToDatabase(){
 
               while (query.next()){
                   idIndex =query.value(0).toInt() + 1;
-             qDebug() << query.value(0).toString();
               }
-             qDebug() << "idIndex" <<idIndex ;
         }
         else if(!database.isOpen()){
             qDebug() << "OpenDatabase fail";

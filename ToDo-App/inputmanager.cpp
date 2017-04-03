@@ -9,8 +9,6 @@ inputManager::inputManager()
 }
 
 void inputManager::addTaskButton(QString taskName, QString toDoCategory){
-    qDebug() << taskName;
-    qDebug() << toDoCategory;
     QString tmp =QString::number(sql.idIndex);
     QString tmpString = "insert into task values (\"" +taskName +"\" ,\"" + toDoCategory +"\","+ tmp +");";
     sql.idIndex++;
@@ -18,20 +16,14 @@ void inputManager::addTaskButton(QString taskName, QString toDoCategory){
 }
 
 QString inputManager::getData(int index, QString type){
-
-
     QString tmpString = "select "+type+" from task;";
     QStringList task = sql.getQuery(tmpString);
-    qDebug() << "isID "<<task.at(index);
-
     return task.at(index);
-
 }
 
 int inputManager::getSize(){
     QString tmpString = "select count (task) from task;";
     QStringList task = sql.getQuery(tmpString);
-    qDebug() << "Zahl===" << task.value(0);
     return  task.value(0).toInt();
 }
 
@@ -42,7 +34,5 @@ void inputManager::removeElement(int index){
 void inputManager::getfilteredData(QString type, QString category){
     QString tmpString = "select " + type + " from task where category =" + category +";";
     sql.getQuery(tmpString);
-
-
 }
 

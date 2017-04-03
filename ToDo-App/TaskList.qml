@@ -13,7 +13,6 @@ Item {
 
             target:applicationWindowMain
             onUpdateList:{
-                console.log("new")
                 listModel.update(false);
                 listModel.update(true);
             }
@@ -21,6 +20,10 @@ Item {
 
         ComboBox{
             id:categoryFilter
+            x: 512
+            y: 48
+            anchors.right: parent.right
+            anchors.rightMargin: 8
             model: ["All", "Other" , "Shopping" , "Study" , "Work" , "Reminder"]
             onCurrentTextChanged: {
                 listModel.update(false);
@@ -33,7 +36,8 @@ Item {
 
              Item {
                  id: listItem
-                 width: mainRect.width; height: mainRect.height * 0.1
+                 width: mainRect.width;
+                 height: mainRect.height * 0.1
                  Row {
                      CheckBox{
                           id:chBox
@@ -58,7 +62,6 @@ Item {
                               visible: false
                           }
                       }
-
                  }
              }
          }
@@ -67,7 +70,7 @@ Item {
                   id: listModel
                   function update(visible){
 
-                      var f= input.getSize();
+                      var f = input.getSize();
 
                       if (visible){
                           for (var i = 0; i < f; i++) {
@@ -80,10 +83,8 @@ Item {
                   function createListElement(index) {
                       var string = input.getData(index,"category")
                       var allString = "All"
-                      console.log("same?" + string.localeCompare(categoryFilter.currentText));
-                      console.log("same?" + string + categoryFilter.currentText);
-                      if(string.localeCompare(categoryFilter.currentText )== 0 || allString.localeCompare(categoryFilter.currentText )== 0){
-                          console.log("same")
+
+                      if(string.localeCompare(categoryFilter.currentText ) === 0 || allString.localeCompare(categoryFilter.currentText ) === 0){
                       return {
                                 task: input.getData(index,"task"),category:input.getData(index,"category"),idElement: input.getData(index,"id"),
                           }
@@ -106,7 +107,4 @@ Item {
                focus: true
          }
      }
-
 }
-
-
