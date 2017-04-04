@@ -6,6 +6,9 @@
 
 int main(int argc, char *argv[])
 {
+    // High-DPI Display Support
+    QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+
     QGuiApplication app(argc, argv);
 
     inputManager input;

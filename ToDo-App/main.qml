@@ -1,6 +1,6 @@
 import QtQuick 2.7
 import QtQuick.Layouts 1.0
-import QtQuick.Controls 2.0
+import QtQuick.Controls 2.1
 
 ApplicationWindow {
     id:applicationWindowMain
@@ -12,23 +12,24 @@ ApplicationWindow {
     signal updateList()
 
     header:TabBar{
+            id: tabBar
+            width: parent.width
+            currentIndex: swipeView.currentIndex
+            TabButton{
+                text:qsTr("Tasklist")
+                onClicked: {
+                    applicationWindowMain.updateList();
+                }
+            }
+            TabButton{
+                text:qsTr("Add Task")
+                onClicked: {
+                    applicationWindowMain.updateList();
+                }
+            }
+        }
 
-        id: tabBar
-        width: parent.width
-        currentIndex: swipeView.currentIndex
-        TabButton{
-            text:qsTr("Tasklist")
-            onClicked: {
-                applicationWindowMain.updateList();
-            }
-        }
-        TabButton{
-            text:qsTr("Add Task")
-            onClicked: {
-                applicationWindowMain.updateList();
-            }
-        }
-    }
+
 
     SwipeView {
         id: swipeView

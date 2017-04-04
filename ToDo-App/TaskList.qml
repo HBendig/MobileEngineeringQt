@@ -1,7 +1,6 @@
 import QtQuick 2.7
 import QtQuick.Controls 2.1
 import QtQuick.Layouts 1.0
-import QtQuick.Controls.Styles 1.4
 
 Item {    
     id:mainItem
@@ -18,10 +17,21 @@ Item {
             }
         }
 
+
+        ListView {
+            id: listView
+            anchors.fill: parent
+            anchors.topMargin:  parent.height * 0.10
+            model:listModel
+            delegate: listDelegate
+            focus: true
+        }
+
         ComboBox{
             id:categoryFilter
             x: 512
-            y: 48
+            anchors.top: parent.top
+            anchors.topMargin: 8
             anchors.right: parent.right
             anchors.rightMargin: 8
             model: ["All", "Other" , "Shopping" , "Study" , "Work" , "Reminder"]
@@ -98,13 +108,5 @@ Item {
                   }
           }
 
-         ListView {
-               id: listView
-               anchors.fill: parent
-               anchors.topMargin:  parent.height * 0.10
-               model:listModel
-               delegate: listDelegate
-               focus: true
-         }
      }
 }
